@@ -314,6 +314,10 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 									}
 								});
 
+								scope.$root.$on('do-calendar-view-refresh', function() {
+									ctrl.refreshView();
+								});
+
                 function getDates(startDate, n) {
                     var dates = new Array(n), current = new Date(startDate), i = 0;
                     current.setHours(12); // Prevent repeated dates because of timezone bug
