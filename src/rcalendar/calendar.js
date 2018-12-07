@@ -1113,18 +1113,18 @@ angular.module('ui.rCalendar', [])
 			'use strict';
         return function(dateItem) {
             const months = [
-                'Jan',
-                'Feb',
-                'Mär',
-                'Apr',
+                'Januar',
+                'Februar',
+                'März',
+                'April',
                 'Mai',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Okt',
-                'Nov',
-                'Dez'
+                'Juni',
+                'Juli',
+                'August',
+                'September',
+                'Oktober',
+                'November',
+                'Dezember'
             ];
             if(dateItem) {
                 var date = new Date(dateItem);
