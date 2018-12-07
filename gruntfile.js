@@ -101,7 +101,7 @@ module.exports = function (grunt) {
     grunt.option('force', true);
 
     //Build task.
-    grunt.registerTask('build', ['jshint', 'copy:css', 'uglify:dist', 'cssmin:dist']);
+    grunt.registerTask('default', ['jshint', 'copy:css', 'uglify:dist', 'cssmin:dist']);
     //Build task.
     grunt.registerTask('build-tpls', ['jshint', 'copy:css', 'html2js:dist_tpls', 'string-replace:dist_tpls', 'concat:dist_tpls', 'uglify:dist_tpls', 'cssmin:dist', 'clean']);
 };

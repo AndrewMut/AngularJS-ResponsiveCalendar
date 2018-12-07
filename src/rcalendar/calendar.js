@@ -15,7 +15,7 @@ angular.module('ui.rCalendar', [])
         noEventsLabel: 'No Events',
         eventSource: null,
         queryMode: 'local',
-        step: 60
+        step: 30
     })
     .controller('ui.rCalendar.CalendarController', ['$scope', '$attrs', '$parse', '$interpolate', '$log', 'dateFilter', 'calendarConfig', function ($scope, $attrs, $parse, $interpolate, $log, dateFilter, calendarConfig) {
         'use strict';
@@ -1101,4 +1101,26 @@ angular.module('ui.rCalendar', [])
                 ctrl.refreshView();
             }
         };
-    }]);
+    }])
+    .filter('germanDate', function() {
+			'use strict';
+        return function(dateItem) {
+            const months = [
+							'Jan',
+							'Feb',
+							'Mär',
+							'Apr',
+							'Mai',
+							'Jun',
+							'Jul',
+							'Aug',
+							'Sep',
+							'Okt',
+							'Nov',
+							'Dez'
+						],
+						month = dateItem.getMonth(),
+						year = dateItem.getYear();
+            	return months[month] + ' ' + year;
+        };
+    });

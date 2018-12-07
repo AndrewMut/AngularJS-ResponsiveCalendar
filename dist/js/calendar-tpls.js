@@ -16,7 +16,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
         noEventsLabel: 'No Events',
         eventSource: null,
         queryMode: 'local',
-        step: 60
+        step: 30
     })
     .controller('ui.rCalendar.CalendarController', ['$scope', '$attrs', '$parse', '$interpolate', '$log', 'dateFilter', 'calendarConfig', function ($scope, $attrs, $parse, $interpolate, $log, dateFilter, calendarConfig) {
         'use strict';
@@ -1102,7 +1102,29 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                 ctrl.refreshView();
             }
         };
-    }]);
+    }])
+    .filter('germanDate', function() {
+			'use strict';
+        return function(dateItem) {
+            const months = [
+							'Jan',
+							'Feb',
+							'Mär',
+							'Apr',
+							'Mai',
+							'Jun',
+							'Jul',
+							'Aug',
+							'Sep',
+							'Okt',
+							'Nov',
+							'Dez'
+						],
+						month = dateItem.getMonth(),
+						year = dateItem.getYear();
+            	return months[month] + ' ' + year;
+        };
+    });
 angular.module("template/rcalendar/calendar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/rcalendar/calendar.html",
     "<div ng-switch=\"calendarMode\">\n" +
@@ -1111,7 +1133,7 @@ angular.module("template/rcalendar/calendar.html", []).run(["$templateCache", fu
     "            <button type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"move(-1)\"><i\n" +
     "                    class=\"glyphicon glyphicon-chevron-left\"></i></button>\n" +
     "        </div>\n" +
-    "        <div class=\"calendar-header col-xs-8\">{{title}}</div>\n" +
+    "        <div class=\"calendar-header col-xs-8\">{{ title | germanDate }}</div>\n" +
     "        <div class=\"nav-right col-xs-2\">\n" +
     "            <button type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"move(1)\"><i\n" +
     "                    class=\"glyphicon glyphicon-chevron-right\"></i></button>\n" +
