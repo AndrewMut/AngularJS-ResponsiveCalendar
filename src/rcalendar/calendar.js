@@ -1121,6 +1121,7 @@ angular.module('ui.rCalendar', [])
 						],
 						month = dateItem.getMonth(),
 						year = dateItem.getYear();
+						console.log('calendar log', months[month] + ' ' + year);
             	return months[month] + ' ' + year;
         };
     });
