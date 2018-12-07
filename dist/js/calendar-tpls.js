@@ -303,10 +303,16 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                 scope.showEventDetail = ctrl.showEventDetail;
                 scope.noEventsLabel = ctrl.noEventsLabel;
                 scope.allDayLabel = ctrl.allDayLabel;
-
+								
                 ctrl.mode = {
                     step: {months: 1}
-                };
+								};
+								
+								scope.$watch('selectedDate', function(newV) {
+									if (newV) {
+											scope.$root.$broadcast('calendar-current-date', { date: scope.selectedDate });
+									}
+								});
 
                 function getDates(startDate, n) {
                     var dates = new Array(n), current = new Date(startDate), i = 0;
@@ -383,7 +389,8 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                     }
 
                     var headerDate = new Date(year, month, 1);
-                    scope.$parent.title = dateFilter(headerDate, ctrl.formatMonthTitle);
+										// scope.$parent.title = dateFilter(headerDate, ctrl.formatMonthTitle);
+										scope.$parent.title = headerDate;
                     scope.rows = ctrl.split(days, 7);
 
                     if (scope.showWeeks) {
@@ -394,7 +401,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                             scope.weekNumbers.push(
                                 getISO8601WeekNumber(scope.rows[curWeek][thursdayIndex].date));
                         }
-                    }
+										}
                 };
 
                 function createDateObject(date, format) {
@@ -1107,22 +1114,26 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 			'use strict';
         return function(dateItem) {
             const months = [
-							'Jan',
-							'Feb',
-							'Mär',
-							'Apr',
-							'Mai',
-							'Jun',
-							'Jul',
-							'Aug',
-							'Sep',
-							'Okt',
-							'Nov',
-							'Dez'
-						],
-						month = dateItem.getMonth(),
-						year = dateItem.getYear();
+                'Jan',
+                'Feb',
+                'Mär',
+                'Apr',
+                'Mai',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Okt',
+                'Nov',
+                'Dez'
+            ];
+            if(dateItem) {
+                var date = new Date(dateItem);
+                var month = date.getMonth();
+				var year = date.getFullYear();
             	return months[month] + ' ' + year;
+            }
+            return;
         };
     });
 angular.module("template/rcalendar/calendar.html", []).run(["$templateCache", function($templateCache) {
