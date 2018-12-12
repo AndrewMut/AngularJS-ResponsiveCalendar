@@ -1146,12 +1146,12 @@ angular.module("template/rcalendar/calendar.html", []).run(["$templateCache", fu
     "    <div class=\"row calendar-navbar\">\n" +
     "        <div class=\"nav-left col-xs-2\">\n" +
     "            <button type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"move(-1)\"><i\n" +
-    "                    class=\"glyphicon glyphicon-chevron-left\"></i></button>\n" +
+    "                    class=\"ion ion-arrow-left-b\"></i></button>\n" +
     "        </div>\n" +
     "        <div class=\"calendar-header col-xs-8\">{{ title | germanDate }}</div>\n" +
     "        <div class=\"nav-right col-xs-2\">\n" +
     "            <button type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"move(1)\"><i\n" +
-    "                    class=\"glyphicon glyphicon-chevron-right\"></i></button>\n" +
+    "                    class=\"ion ion-arrow-right-b\"></i></button>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <dayview ng-switch-when=\"day\"></dayview>\n" +
