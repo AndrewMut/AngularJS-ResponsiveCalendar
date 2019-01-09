@@ -140,6 +140,10 @@
 }
 
 @media (max-width: 750px) {
+    .monthview-week-label {
+        font-size: 12px;
+    }
+
     .weekview-allday-label, .dayview-allday-label, .calendar-hour-column, .calendar-week-column {
         width: 32px;
         font-size: 12px;

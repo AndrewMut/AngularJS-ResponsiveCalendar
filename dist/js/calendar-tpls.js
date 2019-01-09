@@ -1217,7 +1217,7 @@ angular.module("template/rcalendar/month.html", []).run(["$templateCache", funct
     "    <table class=\"table table-bordered table-fixed monthview-datetable monthview-datetable\">\n" +
     "        <thead>\n" +
     "        <tr>\n" +
-    "            <th ng-show=\"showWeeks\" class=\"calendar-week-column text-center\">kw</th>\n" +
+    "            <th ng-show=\"showWeeks\" class=\"calendar-week-column text-center monthview-week-label\">kw</th>\n" +
     "            <th ng-repeat=\"label in labels track by $index\" class=\"text-center\">\n" +
     "                <small>{{label}}</small>\n" +
     "            </th>\n" +
