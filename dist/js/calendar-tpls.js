@@ -1088,7 +1088,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
 				ctrl._refreshView = function () {
 					var startingDate = ctrl.range.startTime;
-
 					scope.rows = createDateObjects(startingDate);
 					scope.allDayEvents = [];
 					scope.dates = [startingDate];
