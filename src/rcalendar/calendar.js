@@ -19,7 +19,6 @@ angular.module('ui.rCalendar', [])
 	})
 	.controller('ui.rCalendar.CalendarController', ['$scope', '$attrs', '$parse', '$interpolate', '$log', 'dateFilter', 'calendarConfig', function ($scope, $attrs, $parse, $interpolate, $log, dateFilter, calendarConfig) {
 		'use strict';
-		console.log('ui.rCalendar.CalendarController');
 		var self = this,
 			ngModelCtrl = { $setViewValue: angular.noop }; // nullModelCtrl;
 
@@ -316,8 +315,6 @@ angular.module('ui.rCalendar', [])
 
 				scope.$root.$on('do-calendar-view-refresh', function () {
 					ctrl.refreshView();
-					console.log('do-calendar-view-refresh');
-					console.log('calendar scope', scope);
 				});
 
 				function getDates(startDate, n) {
@@ -1094,7 +1091,6 @@ angular.module('ui.rCalendar', [])
 					scope.rows = createDateObjects(startingDate);
 					scope.allDayEvents = [];
 					scope.dates = [startingDate];
-					console.log();
 					scope.$parent.title = dateFilter(startingDate, ctrl.formatDayTitle);
 				};
 

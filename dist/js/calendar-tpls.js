@@ -20,7 +20,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 	})
 	.controller('ui.rCalendar.CalendarController', ['$scope', '$attrs', '$parse', '$interpolate', '$log', 'dateFilter', 'calendarConfig', function ($scope, $attrs, $parse, $interpolate, $log, dateFilter, calendarConfig) {
 		'use strict';
-		console.log('ui.rCalendar.CalendarController');
 		var self = this,
 			ngModelCtrl = { $setViewValue: angular.noop }; // nullModelCtrl;
 
@@ -317,8 +316,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
 				scope.$root.$on('do-calendar-view-refresh', function () {
 					ctrl.refreshView();
-					console.log('do-calendar-view-refresh');
-					console.log('calendar scope', scope);
 				});
 
 				function getDates(startDate, n) {
@@ -1095,7 +1092,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 					scope.rows = createDateObjects(startingDate);
 					scope.allDayEvents = [];
 					scope.dates = [startingDate];
-					console.log();
 					scope.$parent.title = dateFilter(startingDate, ctrl.formatDayTitle);
 				};
 
@@ -1216,39 +1212,43 @@ angular.module("template/rcalendar/month.html", []).run(["$templateCache", funct
     "<div>\n" +
     "    <table class=\"table table-bordered table-fixed monthview-datetable monthview-datetable\">\n" +
     "        <thead>\n" +
-    "        <tr>\n" +
-    "            <th ng-show=\"showWeeks\" class=\"calendar-week-column text-center monthview-week-label\">kw</th>\n" +
-    "            <th ng-repeat=\"label in labels track by $index\" class=\"text-center\">\n" +
-    "                <small>{{label}}</small>\n" +
-    "            </th>\n" +
-    "        </tr>\n" +
+    "            <tr>\n" +
+    "                <th ng-show=\"showWeeks\" class=\"calendar-week-column text-center monthview-week-label\">kw</th>\n" +
+    "                <th ng-repeat=\"label in labels track by $index\" class=\"text-center\">\n" +
+    "                    <small>{{label}}</small>\n" +
+    "                </th>\n" +
+    "            </tr>\n" +
     "        </thead>\n" +
     "        <tbody>\n" +
-    "        <tr ng-repeat=\"row in rows track by $index\">\n" +
-    "            <td ng-show=\"showWeeks\" class=\"calendar-week-column text-center\">\n" +
-    "                <small><em>{{ weekNumbers[$index] }}</em></small>\n" +
-    "            </td>\n" +
-    "            <td ng-repeat=\"dt in row track by dt.date\" class=\"monthview-dateCell\" ng-click=\"select(dt)\"\n" +
-    "                ng-class=\"{'text-center':true, 'monthview-current': dt.current&&!dt.selected&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent&&!dt.selected, 'monthview-selected': dt.selected}\">\n" +
-    "                <div ng-class=\"{'text-muted':dt.secondary}\">\n" +
-    "                    {{dt.label}}\n" +
-    "                </div>\n" +
-    "            </td>\n" +
-    "        </tr>\n" +
+    "            <tr ng-repeat=\"row in rows track by $index\">\n" +
+    "                <td ng-show=\"showWeeks\" class=\"calendar-week-column text-center\">\n" +
+    "                    <small><em>{{ weekNumbers[$index] }}</em></small>\n" +
+    "                </td>\n" +
+    "                <td ng-repeat=\"dt in row track by dt.date\" style=\"position: relative;\" class=\"monthview-dateCell\" ng-click=\"select(dt)\" ng-class=\"{'text-center':true, 'monthview-current': dt.current&&!dt.selected&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent&&!dt.selected, 'monthview-selected': dt.selected}\">\n" +
+    "\n" +
+    "                    <div ng-class=\"{'text-muted':dt.secondary}\">\n" +
+    "                        {{dt.label}}\n" +
+    "                    </div>\n" +
+    "                    <p class=\"calendar-day-badge\" ng-if=\"!!dt.events && !!dt.events.length\">{{ dt.events.length }}</p>\n" +
+    "                </td>\n" +
+    "            </tr>\n" +
     "        </tbody>\n" +
     "    </table>\n" +
     "    <div ng-if=\"showEventDetail\" class=\"event-detail-container\">\n" +
     "        <div class=\"scrollable\" style=\"height: 200px\">\n" +
     "            <table class=\"table table-bordered table-striped table-fixed\">\n" +
     "                <tr ng-repeat=\"event in selectedDate.events\" ng-if=\"selectedDate.events\">\n" +
-    "                    <td ng-if=\"!event.allDay\" class=\"monthview-eventdetail-timecolumn\">{{event.startTime|date: 'HH:mm'}}\n" +
+    "                    <td ng-if=\"!event.allDay\" class=\"monthview-eventdetail-timecolumn\">{{event.startTime|date:\n" +
+    "                        'HH:mm'}}\n" +
     "                        -\n" +
     "                        {{event.endTime|date: 'HH:mm'}}\n" +
     "                    </td>\n" +
     "                    <td ng-if=\"event.allDay\" class=\"monthview-eventdetail-timecolumn\">{{allDayLabel}}</td>\n" +
     "                    <td class=\"event-detail\" ng-click=\"eventSelected({event:event})\">{{event.title}}</td>\n" +
     "                </tr>\n" +
-    "                <tr ng-if=\"!selectedDate.events\"><td class=\"no-event-label\">{{noEventsLabel}}</td></tr>\n" +
+    "                <tr ng-if=\"!selectedDate.events\">\n" +
+    "                    <td class=\"no-event-label\">{{noEventsLabel}}</td>\n" +
+    "                </tr>\n" +
     "            </table>\n" +
     "        </div>\n" +
     "    </div>\n" +

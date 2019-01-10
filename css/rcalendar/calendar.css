@@ -139,6 +139,20 @@
     padding-right: 0 !important;
 }
 
+.calendar-day-badge {
+    position: absolute;
+    margin: 0!important;
+    right: 1px;
+    top: 1px;
+    width: 15px;
+    height: 15px;
+    border-radius: 2.5px;
+    background-color: #11c1f3;
+    font-size: 12px;
+    text-align: center;
+    line-height: 15px;
+}
+
 @media (max-width: 750px) {
     .monthview-week-label {
         font-size: 12px;
@@ -172,5 +186,12 @@
     .calendar-event-inner {
         font-size: 12px;
     }
+
+    .calendar-day-badge {
+        width: 13px;
+        height: 13px;
+        font-size: 11px;
+        line-height: 13px;
+    }    
 }
 
