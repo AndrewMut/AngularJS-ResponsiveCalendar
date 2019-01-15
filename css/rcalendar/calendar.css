@@ -144,13 +144,14 @@
     margin: 0!important;
     right: 1px;
     top: 1px;
-    width: 15px;
-    height: 15px;
-    border-radius: 2.5px;
+    width: 17px;
+    height: 17px;
+    /* border-radius: 2.5px; */
+    border-radius: 50%;
     background-color: #11c1f3;
     font-size: 12px;
     text-align: center;
-    line-height: 15px;
+    line-height: 17px;
 }
 
 @media (max-width: 750px) {
@@ -188,10 +189,10 @@
     }
 
     .calendar-day-badge {
-        width: 13px;
-        height: 13px;
+        width: 15px;
+        height: 15px;
         font-size: 11px;
-        line-height: 13px;
+        line-height: 15px;
     }    
 }
 
