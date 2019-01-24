@@ -140,18 +140,6 @@
 }
 
 .calendar-day-badge {
-    /* position: absolute;
-    margin: 0!important;
-    right: 1px;
-    top: 1px;
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background-color: #11c1f3;
-    font-size: 12px;
-    text-align: center;
-    line-height: 17px; */
-
     position: absolute;
     margin: 0!important;
     right: -5px;
@@ -165,12 +153,12 @@
     line-height: 18px;
     z-index: 15;
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-
 }
 
 @media (max-width: 750px) {
     .monthview-week-label {
-        font-size: 10px;
+        font-size: 9px;
+        white-space: nowrap;
     }
 
     .weekview-allday-label, .dayview-allday-label, .calendar-hour-column, .calendar-week-column {
