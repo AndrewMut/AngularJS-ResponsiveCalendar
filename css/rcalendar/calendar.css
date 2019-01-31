@@ -16,6 +16,20 @@
     table-layout: fixed;
 }
 
+.table-month {
+    height: 261px;
+    width:100%;
+    border-collapse: collapse;
+    border:1px solid lightgrey;
+}
+.table-month th, tr, td {
+    border:1px solid lightgrey;
+}
+
+.table-month th {
+    font-weight:bold;
+}
+
 .no-event-label {
     font-weight: bold;
     color: darkgrey;
@@ -34,7 +48,7 @@
 
 .calendar-header {
     text-align: center;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     font-weight: bold;
 }
 
@@ -44,6 +58,9 @@
 
 .calendar-navbar {
     margin-bottom: 5px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .calendar-event-wrap {
@@ -67,6 +84,20 @@
     line-height: 15px;
 }
 
+.month-prev, .month-next {
+    background-color: #5abde9!important;
+}
+.text-center {
+    text-align: center;
+}
+
+.month-cell-centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .calendar-cell {
     padding: 0 !important;
     height: 37px;
@@ -78,8 +109,9 @@
 }
 
 .monthview-selected {
-    background-color: #009900;
-    color: white;
+    -webkit-box-shadow: inset 2px 2px 5px 1px rgba(0,0,0,0.67)!important;
+    -moz-box-shadow: inset 2px 2px 5px 1px rgba(0,0,0,0.67)!important;
+    box-shadow: inset 2px 2px 5px 1px rgba(0,0,0,0.67)!important;
 }
 
 .monthview-current {
@@ -116,6 +148,8 @@
     height: 100%;
 }
 
+
+
 .weekview-header, .monthview-datetable {
     margin-bottom: 0;
 }
@@ -142,8 +176,8 @@
 .calendar-day-badge {
     position: absolute;
     margin: 0!important;
-    right: -5px;
-    top: -7px;
+    right: -3px;
+    top: -6px;
     width: 18px;
     height: 18px;
     border-radius: 50%;

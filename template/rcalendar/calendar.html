@@ -1,12 +1,12 @@
 <div ng-switch="calendarMode">
-    <div class="row calendar-navbar">
-        <div class="nav-left col-xs-2">
-            <button type="button" class="btn btn-default btn-sm" ng-click="move(-1)"><i
+    <div class="calendar-navbar">
+        <div class="nav-left">
+            <button type="button" class="button button-small button-calm month-prev" ng-click="move(-1)"><i
                     class="ion ion-arrow-left-b"></i></button>
         </div>
-        <div class="calendar-header col-xs-8">{{ title | germanDate }}</div>
-        <div class="nav-right col-xs-2">
-            <button type="button" class="btn btn-default btn-sm" ng-click="move(1)"><i
+        <div class="calendar-header">{{ title | germanDate }}</div>
+        <div class="nav-right">
+            <button type="button" class="button button-small button-calm month-next" ng-click="move(1)"><i
                     class="ion ion-arrow-right-b"></i></button>
         </div>
     </div>
