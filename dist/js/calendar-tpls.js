@@ -374,6 +374,20 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 					}
 				};
 
+				//Prevent showing row with dates from not current month
+				scope.hideUnactiveDates = function(row) {
+					var counter = 0;
+					row.forEach(function(value) {
+						if(value.secondary) {
+							counter++;
+						}
+					});
+					if(counter !== 7) {
+						return false;
+					}
+					return true;
+				};
+
 				ctrl._refreshView = function () {
 					var startDate = ctrl.range.startTime,
 						date = startDate.getDate(),
@@ -592,6 +606,10 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 						startDate.setDate(startDate.getDate() + 1);
 						endDate.setDate(endDate.getDate() + 1);
 					}
+
+					// startDate.setDate(startDate.getDate() + 1);
+					// endDate.setDate(endDate.getDate() + 1);
+
 					return {
 						startTime: startDate,
 						endTime: endDate
@@ -1248,14 +1266,14 @@ angular.module("template/rcalendar/month.html", []).run(["$templateCache", funct
     "			</tr>\n" +
     "		</thead>\n" +
     "		<tbody>\n" +
-    "			<tr ng-repeat=\"row in rows track by $index\">\n" +
+    "			<tr ng-repeat=\"row in rows track by $index\"  ng-hide=\"hideUnactiveDates(row)\">\n" +
     "				<td style=\"position:relative;\" ng-show=\"showWeeks\" class=\"calendar-week-column text-center\">\n" +
     "					<small class=\"month-cell-centered\">{{ weekNumbers[$index] }}</small>\n" +
     "				</td>\n" +
     "				<td ng-repeat=\"dt in row track by dt.date\" style=\"position: relative;\" class=\"monthview-dateCell\" ng-click=\"select(dt)\"\n" +
-    "				 ng-class=\"{'text-center':true, 'monthview-current': dt.current&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent, 'monthview-selected': dt.selected}\">\n" +
+    "				 ng-class=\"{'text-center':true, 'monthview-current': dt.current&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent, 'monthview-selected': dt.selected, 'month-view-secondary-wo-event': dt.secondary&&!dt.hasEvent}\">\n" +
     "\n" +
-    "					<div class=\"month-cell-centered\" ng-class=\"{'text-muted':dt.secondary}\">\n" +
+    "					<div class=\"month-cell-centered\" ng-class=\"{'text-muted':dt.secondary }\">\n" +
     "						{{dt.label}}\n" +
     "					</div>\n" +
     "					<p class=\"calendar-day-badge\" ng-if=\"!!dt.events && !!dt.events.length\">{{ dt.events.length }}</p>\n" +
