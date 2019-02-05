@@ -400,6 +400,25 @@ angular.module('ui.rCalendar', [])
 								getISO8601WeekNumber(scope.rows[curWeek][thursdayIndex].date));
 						}
 					}
+
+
+					//Remove row if all dates not form main month
+					scope.rows.forEach(function(value, index) {
+						var rowDates = value;
+						var count = 0;
+
+						rowDates.forEach(function(weekDay) {
+							if(weekDay.secondary) {
+								count++;
+							}
+						});
+
+						if(count === 7) {
+							if (index > -1) {
+								scope.rows.splice(index, 1);
+							}
+						}
+					});
 				};
 
 				function createDateObject(date, format) {
@@ -501,14 +520,16 @@ angular.module('ui.rCalendar', [])
 						while (index < timeDifferenceEnd - eps) {
 							var rowIndex = Math.floor(index / 7);
 							var dayIndex = Math.floor(index % 7);
-							rows[rowIndex][dayIndex].hasEvent = true;
-							eventSet = rows[rowIndex][dayIndex].events;
-							if (eventSet) {
-								eventSet.push(event);
-							} else {
-								eventSet = [];
-								eventSet.push(event);
-								rows[rowIndex][dayIndex].events = eventSet;
+							if(rows && rows[rowIndex] && rows[rowIndex][dayIndex]) {
+								rows[rowIndex][dayIndex].hasEvent = true;
+								eventSet = rows[rowIndex][dayIndex].events;
+								if (eventSet) {
+									eventSet.push(event);
+								} else {
+									eventSet = [];
+									eventSet.push(event);
+									rows[rowIndex][dayIndex].events = eventSet;
+								}
 							}
 							index += 1;
 						}
@@ -516,10 +537,13 @@ angular.module('ui.rCalendar', [])
 
 					for (row = 0; row < 6; row += 1) {
 						for (date = 0; date < 7; date += 1) {
-							if (rows[row][date].hasEvent) {
-								hasEvent = true;
-								rows[row][date].events.sort(compareEvent);
+							if(rows && rows[row] && rows[row][date]) {
+								if (rows[row][date].hasEvent) {
+									hasEvent = true;
+									rows[row][date].events.sort(compareEvent);
+								}
 							}
+
 						}
 					}
 					rows.hasEvent = hasEvent;
@@ -559,9 +583,14 @@ angular.module('ui.rCalendar', [])
 					endDate = new Date(startDate);
 					endDate.setDate(endDate.getDate() + 42);
 
-					startDate.setDate(startDate.getDate() + 1);
-					endDate.setDate(endDate.getDate() + 1);
-
+					//if first day of month is out of range getting it back to the range
+					if(startDate.getDate() === 1) {
+						startDate.setDate(startDate.getDate() - 6 );
+						endDate.setDate(endDate.getDate() - 6 );
+					} else {
+						startDate.setDate(startDate.getDate() + 1);
+						endDate.setDate(endDate.getDate() + 1);
+					}
 					return {
 						startTime: startDate,
 						endTime: endDate
