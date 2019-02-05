@@ -9,14 +9,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in rows track by $index">
+			<tr ng-repeat="row in rows track by $index"  ng-hide="hideUnactiveDates(row)">
 				<td style="position:relative;" ng-show="showWeeks" class="calendar-week-column text-center">
 					<small class="month-cell-centered">{{ weekNumbers[$index] }}</small>
 				</td>
 				<td ng-repeat="dt in row track by dt.date" style="position: relative;" class="monthview-dateCell" ng-click="select(dt)"
-				 ng-class="{'text-center':true, 'monthview-current': dt.current&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent, 'monthview-selected': dt.selected}">
+				 ng-class="{'text-center':true, 'monthview-current': dt.current&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent, 'monthview-selected': dt.selected, 'month-view-secondary-wo-event': dt.secondary&&!dt.hasEvent}">
 
-					<div class="month-cell-centered" ng-class="{'text-muted':dt.secondary}">
+					<div class="month-cell-centered" ng-class="{'text-muted':dt.secondary }">
 						{{dt.label}}
 					</div>
 					<p class="calendar-day-badge" ng-if="!!dt.events && !!dt.events.length">{{ dt.events.length }}</p>

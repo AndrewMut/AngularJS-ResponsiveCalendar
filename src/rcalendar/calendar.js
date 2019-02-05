@@ -373,6 +373,20 @@ angular.module('ui.rCalendar', [])
 					}
 				};
 
+				//Prevent showing row with dates from not current month
+				scope.hideUnactiveDates = function(row) {
+					var counter = 0;
+					row.forEach(function(value) {
+						if(value.secondary) {
+							counter++;
+						}
+					});
+					if(counter !== 7) {
+						return false;
+					}
+					return true;
+				};
+
 				ctrl._refreshView = function () {
 					var startDate = ctrl.range.startTime,
 						date = startDate.getDate(),
@@ -559,8 +573,17 @@ angular.module('ui.rCalendar', [])
 					endDate = new Date(startDate);
 					endDate.setDate(endDate.getDate() + 42);
 
-					startDate.setDate(startDate.getDate() + 1);
-					endDate.setDate(endDate.getDate() + 1);
+					//if first day of month is out of range getting it back to the range
+					if(startDate.getDate() === 1) {
+						startDate.setDate(startDate.getDate() - 6 );
+						endDate.setDate(endDate.getDate() - 6 );
+					} else {
+						startDate.setDate(startDate.getDate() + 1);
+						endDate.setDate(endDate.getDate() + 1);
+					}
+
+					// startDate.setDate(startDate.getDate() + 1);
+					// endDate.setDate(endDate.getDate() + 1);
 
 					return {
 						startTime: startDate,

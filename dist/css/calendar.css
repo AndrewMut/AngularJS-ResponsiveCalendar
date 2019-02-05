@@ -189,6 +189,11 @@
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
+.month-view-secondary-wo-event {
+    background-color: #ebebeb!important;
+    color: rgb(99, 99, 99)!important;
+}
+
 @media (max-width: 750px) {
     .monthview-week-label {
         font-size: 9px;
