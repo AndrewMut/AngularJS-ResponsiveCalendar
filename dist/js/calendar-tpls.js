@@ -472,7 +472,8 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 					if (rows.hasEvent) {
 						for (row = 0; row < 6; row += 1) {
 							for (date = 0; date < 7; date += 1) {
-								if (rows[row][date].hasEvent) {
+								
+								if (rows && rows[row] && rows[row][date] && rows[row][date].hasEvent) {
 									rows[row][date].events = null;
 									rows[row][date].hasEvent = false;
 								}
