@@ -353,11 +353,18 @@ angular.module('ui.rCalendar', [])
 						if (direction === 0) {
 							for (var row = 0; row < 6; row += 1) {
 								for (var date = 0; date < 7; date += 1) {
-									var selected = ctrl.compare(selectedDate, rows[row][date].date) === 0;
-									rows[row][date].selected = selected;
-									if (selected) {
-										scope.selectedDate = rows[row][date];
+									try {
+										if(rows && rows[row] && rows[row][date]) {
+											var selected = ctrl.compare(selectedDate, rows[row][date].date) === 0;
+											rows[row][date].selected = selected;
+											if (selected) {
+												scope.selectedDate = rows[row][date];
+											}
+										}
+									} catch(error) {
+										console.log('Hidden row', error);
 									}
+
 								}
 							}
 						} else {
